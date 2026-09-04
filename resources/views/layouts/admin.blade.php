@@ -18,6 +18,7 @@
             <nav class="col-md-2 sidebar">
                 <h4 class="text-center">🏘️ Dirigente</h4>
                 <hr>
+                <a href="/admin/mapa">🗺️ Mapa Comunitario</a>
                 <a href="/admin/dashboard">📊 Dashboard</a>
                 <a href="/admin/reportes">🚨 Ver Reportes</a>
                 <a href="/admin/usuarios">👥 Usuarios</a>

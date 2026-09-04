@@ -42,6 +42,7 @@ Route::middleware(['auth', \App\Http\Middleware\EsAdmin::class])->prefix('admin'
     Route::post('/reportes/{id}/estado', [AdminReporte::class, 'actualizarEstado']);
     Route::get('/usuarios', [UsuarioController::class, 'index']);
     Route::post('/usuarios/{id}/estado', [UsuarioController::class, 'cambiarEstado']);
+    Route::get('/mapa', [DashboardController::class, 'mapa']);
 });
 
 Route::get('/registro', [AutenticacionWebController::class, 'showRegistro']);
@@ -54,5 +55,7 @@ use App\Http\Controllers\Web\UsuarioDashboardController;
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [UsuarioDashboardController::class, 'index']);
 });
+
+
 
 

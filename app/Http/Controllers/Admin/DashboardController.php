@@ -14,4 +14,8 @@ class DashboardController extends Controller {
 
         return view('admin.dashboard', compact('totalReportes', 'pendientes', 'resueltos', 'totalUsuarios'));
     }
+
+    public function mapa() {
+        return view('admin.mapa');
+    }
 }
