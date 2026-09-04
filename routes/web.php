@@ -44,5 +44,8 @@ Route::middleware(['auth', \App\Http\Middleware\EsAdmin::class])->prefix('admin'
     Route::post('/usuarios/{id}/estado', [UsuarioController::class, 'cambiarEstado']);
 });
 
+Route::get('/registro', [AutenticacionWebController::class, 'showRegistro']);
+Route::post('/registro', [AutenticacionWebController::class, 'registro']);
+
 
 
