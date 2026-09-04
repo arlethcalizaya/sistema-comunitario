@@ -21,7 +21,7 @@
                 <a href="/admin/dashboard">📊 Dashboard</a>
                 <a href="/admin/reportes">🚨 Ver Reportes</a>
                 <a href="/admin/usuarios">👥 Usuarios</a>
-                <a href="/logout" class="text-danger">🚪 Cerrar Sesión</a>
+                <a href="/logout" class="text-danger mt-auto">🚪 Cerrar Sesión</a>
             </nav>
             
             <main class="col-md-10 p-4">

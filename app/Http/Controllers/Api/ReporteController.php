@@ -43,4 +43,11 @@ class ReporteController extends Controller {
         // Solo los reportes del usuario que tiene la sesión iniciada
         return Reporte::where('user_id', auth()->id())->get();
     }
+
+    public function paraMapa() {
+        // Solo enviamos lo necesario para el mapa para que cargue rápido
+        return Reporte::select('id', 'titulo', 'latitud', 'longitud', 'estado', 'categoria_id')
+            ->with('categoria:id,nombre')
+            ->get();
+    }
 }

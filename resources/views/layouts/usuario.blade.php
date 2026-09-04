@@ -22,6 +22,7 @@
                     <li class="nav-item"><a class="nav-link" href="/dashboard">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="/mis-reportes-web">Mis Reportes</a></li>
                     <li class="nav-item"><a class="btn btn-light ms-lg-3" href="/logout">Cerrar Sesión</a></li>
+                    
                 </ul>
             </div>
         </div>
