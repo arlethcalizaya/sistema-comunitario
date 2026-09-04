@@ -48,4 +48,11 @@ Route::get('/registro', [AutenticacionWebController::class, 'showRegistro']);
 Route::post('/registro', [AutenticacionWebController::class, 'registro']);
 
 
+use App\Http\Controllers\Web\UsuarioDashboardController;
+
+// Dentro del grupo middleware 'auth'
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [UsuarioDashboardController::class, 'index']);
+});
+
 
