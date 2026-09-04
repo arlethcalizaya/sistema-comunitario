@@ -11,4 +11,17 @@ class ReporteController extends Controller {
         $reportes = Reporte::with(['usuario', 'categoria'])->latest()->get();
         return view('admin.reportes.index', compact('reportes'));
     }
+
+    public function ver($id) {
+        $reporte = Reporte::with(['usuario', 'categoria', 'zona'])->findOrFail($id);
+        return view('admin.reportes.ver', compact('reporte'));
+    }
+
+    public function actualizarEstado(Request $request, $id) {
+        $reporte = Reporte::findOrFail($id);
+        $reporte->estado = $request->estado;
+        $reporte->save();
+
+        return back()->with('success', 'Estado del reporte actualizado correctamente.');
+    }
 }
