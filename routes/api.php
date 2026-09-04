@@ -24,3 +24,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/mis-reportes', [ReporteController::class, 'misReportes']);
     Route::get('/reportes', [ReporteController::class, 'listarTodos']);
 });
+
+
+Route::get('/mapa/reportes', [ReporteController::class, 'paraMapa']);
