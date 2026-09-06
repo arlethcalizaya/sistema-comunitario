@@ -21,7 +21,7 @@
 
                 </div>
                 <div class="card-body">
-                    <form action="/reportes-web" method="POST">
+                    <form action="/reportes-web" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -41,6 +41,13 @@
                                 <div class="mb-3">
                                     <label class="form-label">Descripción</label>
                                     <textarea name="descripcion" class="form-control" rows="4" required>{{ old('descripcion') }}</textarea>
+                                </div>
+
+                                
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">📸 Fotografía del problema (Obligatorio)</label>
+                                    <input type="file" name="foto" class="form-control" accept="image/*" required>
+                                    <div class="form-text">Sube una imagen clara para que el dirigente pueda evaluarla mejor.</div>
                                 </div>
                             </div>
                             <div class="col-md-6">

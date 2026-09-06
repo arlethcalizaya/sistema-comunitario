@@ -5,12 +5,6 @@ use Illuminate\Database\Eloquent\Model;
 class Reporte extends Model {
     protected $table = 'reportes';
 
-
-    // Relaciones (para que el reporte sepa quién lo creó y de qué tipo es)
-    public function usuario() { return $this->belongsTo(User::class, 'user_id'); }
-    public function categoria() { return $this->belongsTo(Categoria::class, 'categoria_id'); }
-    public function zona() { return $this->belongsTo(Zona::class, 'zona_id'); }
-
     protected $fillable = [
         'user_id', 
         'categoria_id', 
@@ -23,4 +17,16 @@ class Reporte extends Model {
         'prioridad', 
         'estado'
     ];
+
+
+    // Relaciones (para que el reporte sepa quién lo creó y de qué tipo es)
+    public function usuario() { return $this->belongsTo(User::class, 'user_id'); }
+    public function categoria() { return $this->belongsTo(Categoria::class, 'categoria_id'); }
+    public function zona() { return $this->belongsTo(Zona::class, 'zona_id'); }
+
+
+
+    public function imagenes() {
+        return $this->hasMany(ImagenReporte::class, 'reporte_id');
+    }
 }
