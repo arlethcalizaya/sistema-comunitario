@@ -4,6 +4,7 @@
     <div class="row mb-4">
         <div class="col">
             <h2>¡Hola, {{ Auth::user()->name }}! 👋</h2>
+            <a href="/reportes/crear" class="btn btn-danger btn-lg shadow-sm">🚨 Reportar un Problema</a>
             <p class="text-muted">Aquí puedes ver el estado de los problemas que has reportado en el barrio.</p>
         </div>
     </div>

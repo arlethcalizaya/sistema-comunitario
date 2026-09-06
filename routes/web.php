@@ -57,5 +57,15 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+use App\Http\Controllers\Web\ReporteUsuarioController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [UsuarioDashboardController::class, 'index']);
+    
+    // RUTAS DE REPORTES PARA EL VECINO
+    Route::get('/reportes/crear', [ReporteUsuarioController::class, 'crear']);
+    Route::post('/reportes-web', [ReporteUsuarioController::class, 'guardar']);
+});
+
 
 

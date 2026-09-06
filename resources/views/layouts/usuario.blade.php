@@ -39,5 +39,23 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Script de Ventanas Interactivas (SweetAlert2) -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if(session('reporte_exitoso'))
+    <script>
+        Swal.fire({
+            title: "¡Reporte Enviado!",
+            text: "{{ session('reporte_exitoso') }}",
+            icon: "success",
+            confirmButtonColor: "#0d6efd"
+        });
+    </script>
+    @endif
+
+
+
 </body>
 </html>
