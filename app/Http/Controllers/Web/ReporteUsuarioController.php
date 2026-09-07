@@ -19,30 +19,21 @@ class ReporteUsuarioController extends Controller {
  
 
 public function guardar(Request $request) {
-    // 1. Reglas de validación
-    $reglas = [
+    // 1. Añadimos 'foto' a la validación obligatoria
+    $request->validate([
         'categoria_id' => 'required',
         'titulo'       => 'required|max:100',
         'descripcion'  => 'required',
         'latitud'      => 'required',
         'longitud'     => 'required',
-    ];
+        'foto'         => 'required|image|mimes:jpeg,png,jpg|max:2048', // Max 2MB
+    ], [
+        'foto.required' => 'La fotografía es obligatoria para validar el problema.',
+        'foto.image'    => 'El archivo debe ser una imagen.',
+    ]);
 
-    // 2. Mensajes en ESPAÑOL
-    $mensajes = [
-        'categoria_id.required' => 'Debes seleccionar una categoría.',
-        'titulo.required'       => 'El título es obligatorio.',
-        'titulo.max'            => 'El título no puede tener más de 100 caracteres.',
-        'descripcion.required'  => 'La descripción del problema es necesaria.',
-        'latitud.required'      => 'Por favor, selecciona la ubicación en el mapa.',
-        'longitud.required'     => 'Por favor, selecciona la ubicación en el mapa.',
-    ];
-
-    // 3. Ejecutar validación con los mensajes en español
-    $request->validate($reglas, $mensajes);
-
-    // 4. Si pasa, guardamos
-    Reporte::create([
+    // 2. Crear el reporte primero
+    $reporte = Reporte::create([
         'user_id'      => auth()->id(),
         'categoria_id' => $request->categoria_id,
         'zona_id'      => $request->zona_id,
@@ -50,11 +41,24 @@ public function guardar(Request $request) {
         'descripcion'  => $request->descripcion,
         'latitud'      => $request->latitud,
         'longitud'     => $request->longitud,
-        'direccion'    => $request->direccion,
         'prioridad'    => 'baja',
         'estado'       => 'pendiente',
     ]);
 
-    return redirect('/dashboard')->with('reporte_exitoso', '¡Tu reporte ha sido enviado!');
+    // 3. Procesar y guardar la foto
+    if ($request->hasFile('foto')) {
+        $archivo = $request->file('foto');
+        $nombreFoto = time() . '_' . $archivo->getClientOriginalName();
+        // Guardar en storage/app/public/reportes
+        $ruta = $archivo->storeAs('reportes', $nombreFoto, 'public');
+
+        // Guardar la ruta en la base de datos
+        \App\Models\ImagenReporte::create([
+            'reporte_id' => $reporte->id,
+            'ruta'       => '/storage/' . $ruta
+        ]);
+    }
+
+    return redirect('/dashboard')->with('reporte_exitoso', '¡Tu reporte con foto ha sido enviado!');
 }
 }

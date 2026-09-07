@@ -45,9 +45,11 @@ class ReporteController extends Controller {
     }
 
     public function paraMapa() {
-        // Solo enviamos lo necesario para el mapa para que cargue rápido
-        return Reporte::select('id', 'titulo', 'latitud', 'longitud', 'estado', 'categoria_id')
-            ->with('categoria:id,nombre')
-            ->get();
-    }
+    // Le pedimos que incluya las imágenes asociadas al reporte
+    return Reporte::select('id', 'titulo', 'latitud', 'longitud', 'estado', 'categoria_id')
+        ->with(['categoria:id,nombre', 'imagenes:reporte_id,ruta'])
+        ->get();
+}
+
+
 }

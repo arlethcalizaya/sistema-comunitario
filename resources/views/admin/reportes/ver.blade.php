@@ -16,6 +16,21 @@
                     <h5>Descripción:</h5>
                     <p>{{ $reporte->descripcion }}</p>
                     <hr>
+
+                    <hr>
+                    <h5>Evidencia Fotográfica:</h5>
+                    <div class="text-center bg-light p-3 border rounded">
+                        @if($reporte->imagenes->count() > 0)
+                          @foreach($reporte->imagenes as $img)
+                            <img src="{{ asset($img->ruta) }}" class="img-fluid rounded shadow-sm" style="max-height: 400px;" alt="Evidencia">
+                          @endforeach
+                        @else
+                     <p class="text-muted italic">No hay fotos disponibles para este reporte.</p>
+                         @endif
+                    </div>
+
+
+
                     <p><strong>Categoría:</strong> {{ $reporte->categoria->nombre }}</p>
                     <p><strong>Dirección:</strong> {{ $reporte->direccion ?? 'No especificada' }}</p>
                     <p><strong>Fecha:</strong> {{ $reporte->created_at->format('d/m/Y H:i') }}</p>
